@@ -1,38 +1,13 @@
 <!doctype HTML>
 <html>
 <head>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
-  <input class="searchTerms" type="text" placeholder="I'm looking for..."></input>
-  <input class="searchCity" type="text" placeholder="city or location..."></input>
-  <button class="yelpRequest">Make Request</button>
-  <div class="places"></div>
-  <script>
-    var request = new XMLHttpRequest(),
-        reqButton = document.getElementsByClassName('yelpRequest')[0];
-
-    request.onload = function(event) {
-      if (request.responseText) {
-        var businesses = JSON.parse(request.responseText).businesses,
-            container = document.getElementsByClassName('places')[0];
-        businesses.forEach(function(business){
-          var el = document.createElement('div');
-          
-          el.appendChild(document.createTextNode(business.name));
-          container.appendChild(el);
-        });
-      }
-    };
-
-    reqButton.addEventListener('click', function(e) {
-      var terms = document.getElementsByClassName('searchTerms')[0].value,
-          location = document.getElementsByClassName('searchCity')[0].value,
-          stringParams = '?term=' + terms + '&location=' + location.split(' ').join('%20');
-
-      request.open('GET', '/api/yelp' + stringParams, true);
-
-      request.send();
-    });
-  </script>
+  <div id="searchForm"></div>
+  <div id="places"></div>
 </body>
+  <script type="text/jsx" src="javascripts/input.js"></script>
 </html>
