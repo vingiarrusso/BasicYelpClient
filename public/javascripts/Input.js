@@ -40,8 +40,7 @@ var InputForm = React.createClass({
     e.preventDefault();
     var terms = this.refs.terms.getDOMNode().value.trim(),
         location = this.refs.location.getDOMNode().value.trim(),
-        url = '/api/yelp?term=' + terms + '&location=' + location.split(' ').join('%20'),
-        cards = [];
+        url = '/api/yelp?term=' + terms + '&location=' + location.split(' ').join('%20');
 
     if (!terms || !location) {
       return;
